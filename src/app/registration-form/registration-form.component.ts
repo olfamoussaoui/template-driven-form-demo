@@ -7,6 +7,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registration-form.component.css'],
 })
 export class RegistrationFormComponent {
+  fullname: string;
+  emailAddress: string;
+  jobPosition: String = "";
+  pass: string;
+  genderType: string;
+  isConfirmed: boolean;
   @ViewChild('registrationForm') form: NgForm;
   onSubmit() {
     console.log(this.form);
