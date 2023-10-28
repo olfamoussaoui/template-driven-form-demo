@@ -15,7 +15,7 @@
                 type="text"
                 name="name"
                 #fullName="ngModel"
-                [(ngModel)]="fullname"
+                ngModel="fullname"
                 placeholder="Full Name"
                 required
                 ngModel
@@ -37,7 +37,7 @@
                 type="email"
                 name="email"
                 #email="ngModel"
-                [(ngModel)]="emailAddress"
+                ngModel="emailAddress"
                 placeholder="E-mail Address"
                 email
                 required
@@ -57,7 +57,7 @@
                 id="position"
                 name="position"
                 #job="ngModel"
-                [(ngModel)]="jobPosition"
+                ngModel="jobPosition"
                 ngModel
               >
                 <option selected disabled value="">Position</option>
@@ -65,15 +65,19 @@
                 <option value="sweb">Senior Web Developer</option>
                 <option value="pmanager">Project Manager</option>
               </select>
-              <div *ngIf="jobPosition" class="text-success">You selected a position!</div>
-              <div *ngIf="job.invalid && job.touched" class="text-danger">Please select a position!</div>
+              <div *ngIf="jobPosition" class="text-success">
+                You selected a position!
+              </div>
+              <div *ngIf="job.invalid && job.touched" class="text-danger">
+                Please select a position!
+              </div>
             </div>
             <div class="col-md-12">
               <input
                 class="form-control"
                 type="password"
                 name="password"
-                [(ngModel)]="pass"
+                ngModel="pass"
                 #password="ngModel"
                 placeholder="Password"
                 required
@@ -89,53 +93,53 @@
                 Password field cannot be blank!
               </div>
             </div>
-            <div class="col-md-12 mt-3">
+            <div
+              class="col-md-12 mt-3"
+              ngModelGroup="genderTypeDetails"
+              #genderDetails="ngModelGroup"
+            >
               <label class="mb-3 mr-1">Gender: </label>
-
-              <input
-                type="radio"
-                class="btn-check"
-                name="gender"
-                id="male"
-                value="male"
-                autocomplete="off"
-                required
-                #gender="ngModel"
-                [(ngModel)]="genderType"
-                ngModel
-              />
-              <label class="btn btn-sm btn-outline-secondary" for="male"
-                >Male</label
+              <span *ngFor="let gen of genderType">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="gender"
+                  id="{{ gen.id }}"
+                  value="{{ gen.value }}"
+                  autocomplete="off"
+                  required
+                  ngModel="selectedGender"
+                  ngModel
+                />
+                <label
+                  class="btn btn-sm btn-outline-secondary mx-1"
+                  for="{{ gen.id }}"
+                  >{{ gen.value }}
+                </label>
+              </span>
+              <div
+                *ngIf="genderDetails.valid && genderDetails.touched"
+                class="text-success"
               >
-
-              <input
-                type="radio"
-                class="btn-check"
-                name="gender"
-                id="female"
-                value="female"
-                autocomplete="off"
-                required
-                #gender="ngModel"
-                [(ngModel)]="genderType"
-                ngModel
-              />
-              <label class="btn btn-sm btn-outline-secondary" for="female"
-                >Female</label
+                You choose a gender!
+              </div>
+              <div
+                *ngIf="genderDetails.invalid && genderDetails.touched"
+                class="text-danger"
               >
-              <div *ngIf="genderType" class="text-success mv-up">You selected a gender!</div>
-              <div *ngIf="gender.invalid && gender.touched" class="text-danger mv-up">Please select a gender!</div>
+                Please choose a gender!
+              </div>
             </div>
             <div class="form-check">
               <input
                 class="form-check-input"
                 type="checkbox"
                 value=""
-                [(ngModel)]="isConfirmed"
+                ngModel="isConfirmed"
                 #confirm="ngModel"
                 id="invalidCheck"
                 required
-                name="confirm-form"
+                name="confirmation"
                 ngModel
               />
               <label class="form-check-label"
